@@ -1,0 +1,155 @@
+
+***************************************************PUNTO UNO***************************************************
+
+Algoritmo DIVISION
+	Definir primer_dígito, segundo_dígito, resultado Como Real
+	Definir nombre Como Caracter
+	
+	Escribir "Ingrese el primer dígito:"
+	Leer primer_dígito
+	
+	Escribir "Ingrese el segundo dígito:"
+	Leer segundo_dígito
+	
+	Si segundo_dígito <> 0 Entonces
+		resultado <- primer_dígito / segundo_dígito
+		Escribir "el resultado de la división es: ", resultado
+	SiNo
+		Escribir "LoLa - Mento ENTRE 0 no se puede dividir. Okles."
+	FinSi
+	
+	Escribir "Cuál es tu nombre?"
+	Leer nombre
+	Escribir "Gracias ", nombre
+	
+FinAlgoritmo
+
+
+***************************************************PUNTO DOS***************************************************
+
+#include <stdio.h>                                      //librería principal
+#include <string.h>                                     //librería para cadenas char
+
+void getRevertText(char* text) {                        //apertura de la función getRevertText
+    int length = strlen(text), i, j;                    //variables para condicionales y 
+                                                        //strlen(devuelve la longitud de cadena de txt)
+    char temp;                                          //variable para organizar la cadena de txt
+
+    for (i = 0, j = length - 1; i < j; i++, j--) {      //condiciones para ejecutar la función
+        temp = text[i];
+        text[i] = text[j];
+        text[j] = temp;
+    }
+}
+
+int main() {                                            //apertura de la función principal
+    char text[100];                                     //definimos la variable de texto
+
+    printf("Ingrese un texto: ");                       //se pide ingresar la frase
+    fgets(text, sizeof(text), stdin);                   //fgets almacena la cadena de txt
+
+    text[strcspn(text, "\n")] = '\0';                   //strcspn(compara entre dos cadenas para devolver el dato en común)
+
+    getRevertText(text);                                //llama a la función void
+
+    printf("Texto revertido: %s\n", text);              //imprime el texto invertido (opcional)
+
+    return 0;
+}
+
+
+***************************************************PUNTO TRES**************************************************
+
+#include <stdio.h>
+#include <math.h>
+
+double getInvertNumber(double number) {//double para permitir decimales y negativos
+    int sign = (number >= 0) ? 1 : -1; // si es mayor o iugal a 0 entonces es 1 de lo contrario es negtivos en -1
+    number = fabs(number); // Valor absoluto para manejar números negativos y decimales
+    
+    double integerPart = floor(number); // se descompone solo el numero 
+    double decimalPart = number - integerPart;
+    double invertedIntegerPart = 0;
+    
+    while (integerPart > 0) {
+        invertedIntegerPart = (invertedIntegerPart * 10) + fmod(integerPart, 10); //fmod para obtener el reciduo sin el signo por 10 
+        integerPart = floor(integerPart / 10);
+    }
+    
+    return (invertedIntegerPart + decimalPart) * sign;
+}
+
+int main() { 
+    double number = 1222222.2;
+    double invertedNumber = getInvertNumber(number);
+    
+    printf("Número invertido: %.2lf\n", invertedNumber);
+    
+    return 0;
+}
+
+
+***************************************************PUNTO CUATRO************************************************
+
+=====================================================PARTE A===================================================
+
+Algoritmo INVERTIRNUMERO
+	Funcion Invertir_numero 
+			Definir número_invertido, dígito como entero
+			número_invertido <- 0
+			
+			Mientras num <> 0 Hacer
+				digito <- num % 10
+				numeroInvertido <- numeroInvertido * 10 + digito
+				num <- num / 10
+			Fin Mientras
+			
+			Escribir "Número invertido:", numeroInvertido
+	FinFuncion
+		
+	Funcion Principal
+			Definir numero Como Entero
+			
+			Escribir "Ingrese un número entero:"
+			Leer numero
+			
+			InvertirNumero
+    FinFuncion
+
+FinAlgoritmo
+
+
+=====================================================PARTE B===================================================
+
+Algoritmo INVERTIR_FRASE
+	Funcion  InvertirFrase
+		Definir longitud_, i Como Entero
+		Definir fraseInvertida Como Cadena
+		
+		longitud_ <- LongitudCadena
+		fraseInvertida <- ""
+		
+		Para i <- longitud_ Hasta 1 Con Paso -1 Hacer
+			fraseInvertida <- fraseInvertida + SubCadena(frase, i, 1)
+		Fin Para
+		
+		Escribir "Frase invertida:", fraseInvertida
+		
+	FinFuncion
+
+	Funcion Principal
+		Definir texto Como Cadena
+		
+		Escribir "Ingrese una frase:"
+		Leer texto
+		
+		InvertirFrase
+	FinFuncion
+
+FinAlgoritmo
+
+
+================================================================================================================
+
+****************************************************************************************************************
+
